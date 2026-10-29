@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hızlı Araçlar - Ücretsiz Mini Araçlar</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col justify-between font-sans">
+
+    <!-- Header -->
+    <header class="py-6 text-center border-b border-slate-800">
+        <h1 class="text-3xl font-extrabold text-cyan-400">PratikAraclar.com</h1>
+        <p class="text-slate-400 text-sm mt-1">İhtiyacın olan pratik araçlar, anında elinin altında.</p>
+    </header>
+
+    <!-- Main Grid -->
+    <main class="container mx-auto px-4 py-8 max-w-4xl grid grid-cols-1 md:grid-cols-2 gap-8">
+        
+        <!-- Araç 1: Kelime ve Karakter Sayacı -->
+        <div class="bg-slate-900 p-6 rounded-2xl shadow-xl border border-slate-800 flex flex-col justify-between">
+            <div>
+                <h2 class="text-xl font-bold mb-3 text-cyan-300">Kelime ve Karakter Sayacı</h2>
+                <textarea id="textInput" oninput="countText()" placeholder="Metninizi buraya yazın veya yapıştırın..." class="w-full h-32 bg-slate-950 border border-slate-700 rounded-lg p-3 text-white focus:outline-none focus:border-cyan-500 resize-none"></textarea>
+            </div>
+            <div class="flex justify-between mt-4 text-sm text-slate-400 bg-slate-950 p-3 rounded-lg border border-slate-800">
+                <span>Kelime: <strong id="wordCount" class="text-cyan-400">0</strong></span>
+                <span>Karakter: <strong id="charCount" class="text-cyan-400">0</strong></span>
+            </div>
+        </div>
+
+        <!-- Araç 2: Güçlü Şifre Üretici -->
+        <div class="bg-slate-900 p-6 rounded-2xl shadow-xl border border-slate-800 flex flex-col justify-between">
+            <div>
+                <h2 class="text-xl font-bold mb-3 text-cyan-300">Güvenli Şifre Üretici</h2>
+                <div class="bg-slate-950 border border-slate-700 rounded-lg p-4 mb-4 text-center text-xl font-mono tracking-wider text-emerald-400 break-all" id="passwordOutput">Şifreniz burada belirir</div>
+            </div>
+            <button onclick="generatePassword()" class="w-full bg-cyan-600 hover:bg-cyan-500 text-white font-semibold py-3 rounded-lg transition shadow-lg shadow-cyan-900/50">Şifre Üret</button>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="py-4 text-center text-xs text-slate-600 border-t border-slate-800">
+        &copy; 2026 Pratik Araçlar. Tüm hakları saklıdır. Hiçbir bakım gerektirmez.
+    </footer>
+
+    <!-- JavaScript Mantığı -->
+    <script>
+        // Kelime Sayacı Mantığı
+        function countText() {
+            const text = document.getElementById("textInput").value;
+            const charCount = text.length;
+            const words = text.trim() === "" ? 0 : text.trim().split(/\s+/).length;
+            
+            document.getElementById("charCount").innerText = charCount;
+            document.getElementById("wordCount").innerText = words;
+        }
+
+        // Şifre Üretici Mantığı
+        function generatePassword() {
+            const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_+";
+            let password = "";
+            for (let i = 0; i < 14; i++) {
+                password += chars.charAt(Math.floor(Math.random() * chars.length));
+            }
+            document.getElementById("passwordOutput").innerText = password;
+        }
+    </script>
+</body>
+</html>
